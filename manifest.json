@@ -1,6 +1,6 @@
 {
-    "name": "Hackathon",
-    "version": "1.0",
+	"name": "Hackathon",
+	"version": "1.0",
 	"description": "Knowit Hackathon",
 	"permissions": ["activeTab", "declarativeContent", "storage"],
 	"page_action": {
