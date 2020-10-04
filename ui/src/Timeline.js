@@ -42,7 +42,7 @@ const options = {
 
 const data = rawData.Faces;
 const Timeline = () => {
-  const [chartData, setChartData] = useState(null);
+  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,53 +68,57 @@ const Timeline = () => {
   }, []);
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.videoContainer}>
-        <video height='780' controls autoPlay>
-          <source src={video} type='video/mp4'></source>
-        </video>
-      </div>
-      {chartData !== null && (
-        <div className={styles.flexContainer}>
-          <Radar data={chartData} options={options} />
+    <div>
+      <div className={styles.mainContainer}>
+        <div className={styles.videoContainer}>
+          <video width='1000px' height='760' controls autoPlay>
+            <source src={video} type='video/mp4'></source>
+          </video>
         </div>
-      )}
-      <table className={styles.dataTable}>
-        <thead>
-          <tr>
-            <th>TIME</th>
-            <th>AGE RANGE</th>
-            <th>ANGRY</th>
-            <th>CALM</th>
-            <th>CONFUSED</th>
-            <th>DISGUSTED</th>
-            <th>FEAR</th>
-            <th>HAPPY</th>
-            <th>SAD</th>
-            <th>SURPRISED</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data !== null &&
-            data.map((x, index) => {
-              return (
-                <tr key={index}>
-                  <td>{(x.Timestamp / 1000).toFixed(1)}s</td>
-                  <td>
-                    {x.Face.AgeRange.Low} - {x.Face.AgeRange.High}
-                  </td>
-                  {x.Face.Emotions.sort((a, b) =>
-                    a.Type > b.Type ? 1 : -1
-                  ).map((emotion, index) => {
-                    return (
-                      <td key={index}>{emotion.Confidence.toFixed(2)}%</td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+        {chartData !== null && (
+          <div className={styles.flexContainer}>
+            <Radar data={chartData} options={options} />
+          </div>
+        )}
+      </div>
+      <div className={styles.tableContainer}>
+        <table className={styles.dataTable}>
+          <thead>
+            <tr>
+              <th>TIME</th>
+              <th>AGE RANGE</th>
+              <th>ANGRY</th>
+              <th>CALM</th>
+              <th>CONFUSED</th>
+              <th>DISGUSTED</th>
+              <th>FEAR</th>
+              <th>HAPPY</th>
+              <th>SAD</th>
+              <th>SURPRISED</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data !== null &&
+              data.map((x, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{(x.Timestamp / 1000).toFixed(1)}s</td>
+                    <td>
+                      {x.Face.AgeRange.Low} - {x.Face.AgeRange.High}
+                    </td>
+                    {x.Face.Emotions.sort((a, b) =>
+                      a.Type > b.Type ? 1 : -1
+                    ).map((emotion, index) => {
+                      return (
+                        <td key={index}>{emotion.Confidence.toFixed(2)}%</td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

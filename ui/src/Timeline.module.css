@@ -1,23 +1,29 @@
+.mainContainer {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+}
+
 .videoContainer {
   /* background-color: lightgrey; */
   height: 780px;
   padding: 15px;
 }
 
-.mainContainer {
-  display: grid;
-  grid-template-columns: 1fr 0.7fr;
-}
-
 .flexContainer {
   display: flex;
   align-items: center;
+  height: 780px;
+}
+
+.tableContainer {
+  padding: 20px;
 }
 
 .dataTable {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 70%;
+  /* padding: 15px; */
 }
 
 .dataTable td,
