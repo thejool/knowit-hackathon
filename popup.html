@@ -6,15 +6,41 @@
 				width: 250px;
 			}
 
+			video {
+				width: 100%;
+			}
+
 			.button {
 				padding: 10px 20px;
+				display: block;
+				min-width: 210px;
+				margin: 10px auto;
+				border: 0;
+			}
+
+			.record {
+				background: #2ed573;
+				color: #fff;
+			}
+
+			.record:hover {
+				background: #28bf66;
+			}
+			
+			.stop {
+				background: #ff4757;
+				color: #fff;
+			}
+			.stop:hover {
+				background: #ea414f;
 			}
 		</style>
 	</head>
 	<body>
-		<button id="startCaptureScreen" class="button">Spela in</button>
-		<button id="stopCaptureScreen" class="button">Stopp</button>
+		<button id="startCaptureScreen" class="button record">Spela in</button>
+		<button id="stopCaptureScreen" class="button stop">Stopp</button>
+		<button id="upload" class="button">Ladda upp</button>
 
-		<script src="popup.js"></script>
+		<script src="dist/extension.bundle.js"></script>
 	</body>
 </html>
