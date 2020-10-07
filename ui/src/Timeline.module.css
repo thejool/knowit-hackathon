@@ -5,6 +5,8 @@
 
 .videoContainer {
   /* background-color: lightgrey; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 780px;
   padding: 15px;
 }

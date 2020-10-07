@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import rawData from "./data.json";
+import rawData from "./data2.json";
 import { Radar } from "react-chartjs-2";
 import styles from "./Timeline.module.css";
-import video from "./video.mp4";
+import video from "./cam.mov";
+import video2 from "./screen.mov";
 
 let loopIndex = 0;
 
@@ -71,8 +72,11 @@ const Timeline = () => {
     <div>
       <div className={styles.mainContainer}>
         <div className={styles.videoContainer}>
-          <video width='1000px' height='760' controls autoPlay>
+          <video width='500px' height='760' controls autoPlay>
             <source src={video} type='video/mp4'></source>
+          </video>
+          <video width='500px' height='760' controls autoPlay>
+            <source src={video2} type='video/mp4'></source>
           </video>
         </div>
         {chartData !== null && (
@@ -87,6 +91,7 @@ const Timeline = () => {
             <tr>
               <th>TIME</th>
               <th>AGE RANGE</th>
+              <th>SMILE</th>
               <th>ANGRY</th>
               <th>CALM</th>
               <th>CONFUSED</th>
@@ -106,6 +111,7 @@ const Timeline = () => {
                     <td>
                       {x.Face.AgeRange.Low} - {x.Face.AgeRange.High}
                     </td>
+                    <td>{x.Face.Smile.Value.toString()}</td>
                     {x.Face.Emotions.sort((a, b) =>
                       a.Type > b.Type ? 1 : -1
                     ).map((emotion, index) => {
@@ -119,6 +125,34 @@ const Timeline = () => {
           </tbody>
         </table>
       </div>
+
+      {/* <div className={styles.tableContainer}>
+        <table className={styles.dataTable}>
+          <thead>
+            <tr>
+              <th>TIME</th>
+              <th>AGE RANGE</th>
+              <th>SMILE</th>
+              <th>MUSTACHE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data !== null &&
+              data.map((x, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{(x.Timestamp / 1000).toFixed(1)}s</td>
+                    <td>
+                      {x.Face.AgeRange.Low} - {x.Face.AgeRange.High}
+                    </td>
+                    <td>{x.Face.Smile.Value.toString()}</td>
+                    <td>{x.Face.Mustache.Value.toString()}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div> */}
     </div>
   );
 };
